@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Local environment and credentials
+.env
+.env.*
+!.env.example
+google-token.json
+
+# SQLite databases and journal files
+*.db
+*.db-shm
+*.db-wal
+*.db-journal
+*.sqlite
+*.sqlite3
+*.sqlite-shm
+*.sqlite-wal
+*.sqlite3-shm
+*.sqlite3-wal
+
+# Test output and logs
+test-results/
+playwright-report/
+coverage/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

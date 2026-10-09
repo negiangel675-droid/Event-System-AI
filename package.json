@@ -1,0 +1,19 @@
+{
+  "name": "ai-event-management",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test tests/api.test.js tests/service.test.js",
+    "test:ui": "playwright test"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.3.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "googleapis": "^144.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.0"
+  }
+}

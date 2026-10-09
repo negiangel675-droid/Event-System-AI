@@ -1,0 +1,2 @@
+const {defineConfig}=require('@playwright/test');
+module.exports=defineConfig({testDir:'./tests',testMatch:'ui.spec.js',use:{baseURL:'http://localhost:3108',headless:true,channel:process.env.UI_BROWSER_CHANNEL || undefined},webServer:{command:'node server.js',port:3108,reuseExistingServer:false,env:{PORT:'3108',DB_PATH:'/tmp/gather-ui-test.db',GEMINI_API_KEY:'',ADMIN_PASSWORD:'admin123'}},workers:1});
