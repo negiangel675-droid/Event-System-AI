@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const crypto = require('crypto');
+const path = require('node:path');
 const q = require('./db');
 const { registerFlow, saveRegistrationCalendar, cancelRegistrationFlow } = require('./service');
 const { askAgent } = require('./agent');
@@ -9,7 +10,7 @@ const cal = require('./calendar');
 const app = express();
 app.use(express.json({limit:'32kb'}));
 app.use((req,res,next)=>{res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','same-origin');next();});
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // ---- Simple auth: students log in with Student ID, admin with password ----
 q.db.exec('CREATE TABLE IF NOT EXISTS sessions(token TEXT PRIMARY KEY, user TEXT NOT NULL, expires INTEGER NOT NULL)');
