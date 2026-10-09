@@ -25,6 +25,12 @@ Open http://localhost:3000. Students: S001–S004. Default administrator passwor
 - Google Calendar invites after registration. A failed calendar call does not discard the registration.
 - Admin-only OAuth initiation, expiring state bound to an HttpOnly cookie, and visible integration status.
 
+## Vercel demo deployment
+
+On Vercel, the default SQLite path is `/tmp/events.db` because the application directory is read-only. Remove the `DB_PATH` environment variable to use this default, or set it to `/tmp/events.db`. This is only a temporary demo: events, registrations, sessions and OAuth state are instance-local and may reset or differ between instances. Use a hosted database for persistent deployments.
+
+Set credentials in Vercel Project Settings → Environment Variables; the ignored local `.env` is not deployed. Set `GOOGLE_REDIRECT_URI` to `https://event-system-ai.vercel.app/auth/google/callback` and add the same URI to the Google OAuth client. The current file-based Google token storage also requires persistent storage changes before Calendar can work reliably on Vercel. Redeploy after changing environment variables.
+
 ## Enable the actual Gemini LLM
 
 Set GEMINI_API_KEY in .env using your Google AI Studio key. Optional GEMINI_MODEL defaults to gemini-2.5-flash. Restart the server. The Integrations screen reports configuration, not a successful external API health check. Test a chat request to verify your key/model/quota.

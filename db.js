@@ -1,6 +1,9 @@
 // Database layer (SQLite) - tables: students, events, registrations
 const Database = require('better-sqlite3');
-const db = new Database(process.env.DB_PATH || 'events.db');
+// Vercel's application directory is read-only. /tmp is writable but ephemeral.
+const dbPath = process.env.DB_PATH || (process.env.VERCEL ? '/tmp/events.db' : 'events.db');
+const db = new Database(dbPath);
+if (process.env.VERCEL) console.warn('SQLite on Vercel uses temporary, instance-local storage. Data and sessions can reset; use a hosted database for persistent deployments.');
 db.pragma('foreign_keys = ON');
 db.pragma('journal_mode = WAL');
 
